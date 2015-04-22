@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/dladowitz/mail_server/issues"
   },
-  "homepage": "https://github.com/dladowitz/mail_server"
+  "homepage": "https://github.com/dladowitz/mail_server",
+  "dependencies": {
+    "express": "^4.12.3"
+  }
 }
