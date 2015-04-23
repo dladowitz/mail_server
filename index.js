@@ -1,6 +1,6 @@
 //// modules
 var express = require("express");
-// var bodyParser = require("body-parser")
+var bodyParser = require('body-parser');
 
 
 // create an express server instance
@@ -12,14 +12,15 @@ app.use(express.static(__dirname + '/views'));
 // serve up static files
 app.use(express.static(__dirname + '/static'));
 
-// app.use(bodyParser.urlencoded({ extended: true}));
-// app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true}));
+app.use(bodyParser.json());
 
-// //logging middleware
-// app.use(function(req, res, next){
-//   console.log("Request at ", req.path);
-//   next();
-// })
+
+//logging middleware
+app.use(function(request, response, next){
+  console.log("Request at ", request.path);
+  next();
+})
 
 
 //// Routes
