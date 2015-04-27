@@ -1,7 +1,10 @@
 //// modules
-var express = require("express");
+var express    = require("express");
 var bodyParser = require('body-parser');
+var pg         = require('pg');
 
+var databaseURL = process.env["DATABASE_URL"];
+console.log("Database - " + databaseURL);
 
 // create an express server instance
 var app = express();
