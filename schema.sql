@@ -12,8 +12,8 @@ CREATE TABLE users(
   created_at timestamptz DEFAULT localtimestamp not null
 );
 
--- CREATE TABLE sent_emails(
---   id serial primary key not null,
---   email_id int references emails(id),
---   user_id  int references users(id)
--- );
+CREATE TABLE sent_emails(
+  id serial primary key not null,
+  email_id int references emails(id),
+  user_id  int references users(id)
+);

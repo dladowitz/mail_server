@@ -23,12 +23,7 @@ var app = express();
 app.use(bodyParser.urlencoded({ extended: true}));
 app.use(bodyParser.json());
 
-// look in the view directory. Use index.html as default. Override app.get()
-// when this runs it overides app.get("/") below
-app.use(express.static(__dirname + '/views'));
 
-// serve up static files
-app.use(express.static(__dirname + '/static'));
 
 // app.use(bodyParser.urlencoded({ extended: true}));
 // app.use(bodyParser.json());
@@ -39,36 +34,44 @@ app.use(express.static(__dirname + '/static'));
 app.get("/", function(request, response, next) {
   // response.send("<h1>Hello There World!!!!</h1>");
   console.log(">>>>>>>>>>>>>>>>>>>")
-  console.log(request.query["name"])
+  console.log(request.query)
   next()
  });
+
+
+
 
 app.post("/submit", function(request, response, next) {
   var body = request.body
   console.log("Request body: ")
   console.log(request.body)
 
-    db.query("INSERT INTO users (type_token, channel_token, user_name, message_text) VALUES ($1, $2, $3, $4)", [req.params.type_token, req.params.channel_token, req.body.user_name, req.body.message_text], function(err, result) {
+  db.query("INSERT INTO users (email_address) VALUES ($1);", [request.body["email"]], function(err, result) {
     if (err) {
+      console.log("Record Not Saved")
       if (err.code == "23502") {
-        err.explanation = "Didn't get all of the parameters in the request body. Send user_name and message_text in the request body (remember this is a POST request)."
+        err.explanation = "Something has gone horribily wrong. Wish we knew what it was"
       }
-      res.status(500).send(err);
+      response.status(500).send(err);
     } else {
-      res.send(result);
+      console.log("Record Saved to Database")
+      response.send(result);
     }
   });
-
-
-
-  response.send("You're email address is: " + body["email"] + "We promise to not do anything uncool with it.")
- });
+  // response.send("You're email address is: " + body["email"] + "We promise to not do anything uncool with it.")
+});
 
 
 
 
 // find the port from the environment
 var port = process.env["PORT"];
+
+// look in the view directory. Use index.html as default. 
+app.use(express.static(__dirname + '/views'));
+
+// serve up static files
+app.use(express.static(__dirname + '/static'));
 
 // start listening on the port
 app.listen(port);
