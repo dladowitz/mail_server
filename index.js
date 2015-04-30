@@ -1,11 +1,23 @@
-//// modules
-var express    = require("express");
-var bodyParser = require('body-parser');
-var pg         = require('pg'); 
-var ejs        = require('ejs');
-var expressLayouts = require('express-ejs-layouts')
-
+// Environmental Vars
+var port        = process.env["PORT"];
 var databaseURL = process.env["DATABASE_URL"];
+var mandrillKey = process.env["MANDRILL_KEY"]
+
+
+//// modules
+var express        = require("express");
+var bodyParser     = require('body-parser');
+var pg             = require('pg'); 
+var ejs            = require('ejs');
+var expressLayouts = require('express-ejs-layouts')
+var mandrill       = require('mandrill-api/mandrill');
+
+
+//// Mandril TODO: move to mailer.js file
+var mandrill_client = new mandrill.Mandrill(mandrillKey);
+
+
+
 console.log("Database - " + databaseURL);
 console.log("Port #   - " + process.env["PORT"])
 
@@ -60,6 +72,11 @@ app.get("/users", function(request, response, next){
   });
 });
 
+app.get("/login", function(request, response, next){
+  response.render("login")
+
+});
+
 app.post("/submit", function(request, response, next) {
   var body = request.body
   console.log("Request body: ")
@@ -74,17 +91,34 @@ app.post("/submit", function(request, response, next) {
       response.status(500).send(err);
     } else {
       console.log("Record Saved to Database")
+      confirmationEmail({email_address: request.body["email"]})
       response.send(result);
     }
   });
   // response.send("You're email address is: " + body["email"] + "We promise to not do anything uncool with it.")
 });
 
+//// Functions
+function confirmationEmail(user){
+  var message = {
+    "text": "Thanks for signing up. We'll be in touch shortly",
+    "subject": "Request for Info Recieived",
+    "from_email": "david@tradecrafted.com",
+    "from_name": "Code Monkey",
+    "to": [user.email_address]
+  }
+  debugger;
+  sendEmail(message)
+ }
 
-
-
-// find the port from the environment
-var port = process.env["PORT"];
+function sendEmail(message){
+  mandrill_client.messages.send({"message": message, "async": true }, function(result) {
+      console.log(result);
+  }, function(e) {
+      // Mandrill returns the error as an object with name and message keys
+      console.log('A mandrill error occurred: ' + e.name + ' - ' + e.message);
+  });
+ }
 
 // look in the view directory. Use index.html as default. 
 app.use(express.static(__dirname + '/views'));
