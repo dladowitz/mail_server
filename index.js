@@ -3,6 +3,7 @@ var express    = require("express");
 var bodyParser = require('body-parser');
 var pg         = require('pg'); 
 var ejs        = require('ejs');
+var expressLayouts = require('express-ejs-layouts')
 
 var databaseURL = process.env["DATABASE_URL"];
 console.log("Database - " + databaseURL);
@@ -17,6 +18,9 @@ pg.connect(databaseURL, function(err, client) {
 // create an express server instance
 var app = express();
 
+app.use(expressLayouts)
+// app.use(app.router)
+
 ////middleware
 // request body parsing tools
 app.use(bodyParser.urlencoded({ extended: true}));
@@ -24,6 +28,7 @@ app.use(bodyParser.json());
 
 // add ejs templeting
 app.set('view engine', 'ejs');
+app.set('layout', 'layout') // defaults to 'layout'  
 
 // logging
 // app.use(function(request, response, next){
