@@ -43,6 +43,7 @@ app.get("/", function(request, response, next) {
   // response.send("<h1>Hello There World!!!!</h1>");
   console.log(">>>>>>>>>>>>>>>>>>>")
   console.log("query string: " + request.query)
+  var name = "david"
   next()
 });
 
