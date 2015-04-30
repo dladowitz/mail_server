@@ -108,7 +108,6 @@ function confirmationEmail(user){
     "from_name": "Code Monkey",
     "to": [user.email_address]
   }
-  debugger;
   sendEmail(message)
  }
 
