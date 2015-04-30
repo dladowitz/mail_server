@@ -1,0 +1,14 @@
+<h1>Hello EJS</h1>
+
+<table>
+    <tr>
+      <th> Name  </th>
+      <th> Email </th> 
+    </tr>
+  <% for (var i=0; i < users.length; i++){ %>
+      <tr>
+        <td><%=users[i].first_name%></td>
+        <td><%=users[i].email_address%></td>
+      </tr>
+  <% } %>
+</table>

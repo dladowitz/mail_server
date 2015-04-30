@@ -18,6 +18,7 @@
   "homepage": "https://github.com/dladowitz/mail_server",
   "dependencies": {
     "body-parser": "^1.12.3",
+    "ejs": "^2.3.1",
     "express": "^4.12.3",
     "pg": "^4.3.0"
   }

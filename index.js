@@ -1,12 +1,15 @@
 //// modules
 var express    = require("express");
 var bodyParser = require('body-parser');
-var pg         = require('pg');
+var pg         = require('pg'); 
+var ejs        = require('ejs');
+
 var databaseURL = process.env["DATABASE_URL"];
 console.log("Database - " + databaseURL);
+console.log("Port #   - " + process.env["PORT"])
 
+// database connection
 var db;
-
 pg.connect(databaseURL, function(err, client) {
   db = client;
 })
@@ -14,19 +17,19 @@ pg.connect(databaseURL, function(err, client) {
 // create an express server instance
 var app = express();
 
-//logging middleware
+////middleware
+// request body parsing tools
+app.use(bodyParser.urlencoded({ extended: true}));
+app.use(bodyParser.json());
+
+// add ejs templeting
+app.set('view engine', 'ejs');
+
+// logging
 // app.use(function(request, response, next){
 //   console.log("Request at ", request.path);
 //   next();
 // })
-
-app.use(bodyParser.urlencoded({ extended: true}));
-app.use(bodyParser.json());
-
-
-
-// app.use(bodyParser.urlencoded({ extended: true}));
-// app.use(bodyParser.json());
 
 
 //// Routes
@@ -34,12 +37,23 @@ app.use(bodyParser.json());
 app.get("/", function(request, response, next) {
   // response.send("<h1>Hello There World!!!!</h1>");
   console.log(">>>>>>>>>>>>>>>>>>>")
-  console.log(request.query)
+  console.log("query string: " + request.query)
   next()
- });
+});
 
+app.get("/users", function(request, response, next){
+  db.query("SELECT * FROM USERS;", [], function(err, result){
+    if (err) {
+      err.explanation = "Not able to do query"
+      response.status(500).send(err)
+    } else {
+      console.log("trying to render users page")
 
-
+      // response.send(result.rows);
+      response.render("userlist", {"users" : result.rows});
+    }
+  });
+});
 
 app.post("/submit", function(request, response, next) {
   var body = request.body
