@@ -75,7 +75,10 @@ app.get("/users", function(request, response, next){
 
 app.get("/login", function(request, response, next){
   response.render("login")
+});
 
+app.get("/confirmation", function(request, response, next){
+  response.render("confirmation", {"email" : request.query.email });
 });
 
 app.post("/submit", function(request, response, next) {
@@ -93,7 +96,8 @@ app.post("/submit", function(request, response, next) {
     } else {
       console.log("Record Saved to Database")
       confirmationEmail({email_address: request.body["email"]})
-      response.send(result);
+      // response.send(result);
+      response.redirect('/confirmation?email='+ request.body["email"]);
     }
   });
   // response.send("You're email address is: " + body["email"] + "We promise to not do anything uncool with it.")
@@ -106,7 +110,7 @@ function confirmationEmail(user){
     "subject": "Request for Info Recieived",
     "from_email": "david@tradecrafted.com",
     "from_name": "Code Monkey",
-    "to": [user.email_address]
+    "to": [{email: user.email_address}]
   }
   sendEmail(message)
  }
