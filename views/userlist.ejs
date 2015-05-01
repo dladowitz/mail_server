@@ -1,14 +1,19 @@
-<h3>Hello EJS</h3>
-
-<table>
-    <tr>
-      <th> Name  </th>
-      <th> Email </th> 
-    </tr>
-  <% for (var i=0; i < users.length; i++){ %>
-      <tr>
-        <td><%=users[i].first_name%></td>
-        <td><%=users[i].email_address%></td>
-      </tr>
-  <% } %>
-</table>
+<div class="container mt50">
+  <h3>Signed up users</h3>
+  
+  <div class="col-sm-8">
+    <table class="table">
+        <tr>
+          <th> Name  </th>
+          <th> Email </th> 
+        </tr>
+      <% users.forEach(function(user){ %>
+          <tr>
+            <td><%=user.first_name%></td>
+            <td><%=user.email_address%></td>
+          </tr>
+      <% }) %>
+    </table>
+    
+  </div>
+</div>

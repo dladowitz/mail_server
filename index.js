@@ -26,8 +26,8 @@ pg.connect(databaseURL, function(err, client) {
 // create an express server instance
 var app = express();
 
+// user layout files
 app.use(expressLayouts)
-// app.use(app.router)
 
 ////middleware
 // request body parsing tools
@@ -46,7 +46,6 @@ app.set('layout', 'layout') // defaults to 'layout'
 //   console.log("Request at ", request.path);
 //   next();
 // })
-
 
 //// Routes
 // listen on at the root '/' of the domain
@@ -79,23 +78,19 @@ app.get("/confirmation", function(request, response, next){
 app.post("/submit", function(request, response, next) {
   var body = request.body
   console.log("Request body: ")
-  console.log(request.body)
+  console.log(body)
 
-  db.query("INSERT INTO users (email_address) VALUES ($1);", [request.body["email"]], function(err, result) {
+  db.query("INSERT INTO users (email_address) VALUES ($1);", [body["email"]], function(err, result) {
     if (err) {
       console.log("Record Not Saved")
-      if (err.code == "23502") {
-        err.explanation = "Something has gone horribily wrong. Wish we knew what it was"
-      }
+      err.explanation = "Something has gone horribily wrong. Wish we knew what it was"
       response.status(500).send(err);
     } else {
       console.log("Record Saved to Database")
-      confirmationEmail({email_address: request.body["email"]})
-      // response.send(result);
-      response.redirect('/confirmation?email='+ request.body["email"]);
+      confirmationEmail({email_address: body["email"]})
+      response.redirect('/confirmation?email='+ body["email"]);
     }
   });
-  // response.send("You're email address is: " + body["email"] + "We promise to not do anything uncool with it.")
 });
 
 //// Functions
@@ -113,14 +108,12 @@ function confirmationEmail(user){
         "text": messageText,
         "subject": "Request for Info Recieived",
         "from_email": "david@tradecrafted.com",
-        "from_name": "Code Monkey",
+        "from_name": "Cottage Class",
         "to": [{email: user.email_address}]
       }
       sendEmail(message)  
     }
-  });
-
- 
+  }); 
  }
 
 function sendEmail(message){
@@ -131,10 +124,6 @@ function sendEmail(message){
       console.log('A mandrill error occurred: ' + e.name + ' - ' + e.message);
   });
  }
-
-// look in the view directory. Use index.html as default. 
-// app.use(express.static(__dirname + '/views'));
-
 
 // start listening on the port
 app.listen(port);
