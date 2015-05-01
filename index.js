@@ -1,15 +1,16 @@
 // Environmental Vars
 var port        = process.env["PORT"];
 var databaseURL = process.env["DATABASE_URL"];
-var mandrillKey = process.env["MANDRILL_KEY"]
+var mandrillKey = process.env["MANDRILL_KEY"];
 
 
 //// modules
 var express        = require("express");
+var fs             = require("fs");
 var bodyParser     = require('body-parser');
 var pg             = require('pg'); 
 var ejs            = require('ejs');
-var expressLayouts = require('express-ejs-layouts')
+var expressLayouts = require('express-ejs-layouts');
 var mandrill       = require('mandrill-api/mandrill');
 
 
@@ -105,14 +106,27 @@ app.post("/submit", function(request, response, next) {
 
 //// Functions
 function confirmationEmail(user){
-  var message = {
-    "text": "Thanks for signing up. We'll be in touch shortly",
-    "subject": "Request for Info Recieived",
-    "from_email": "david@tradecrafted.com",
-    "from_name": "Code Monkey",
-    "to": [{email: user.email_address}]
-  }
-  sendEmail(message)
+  var messageText = ""
+
+  fs.readFile(__dirname + "/mail_templates/welcome_email.txt", function(error, data) {
+    if(error){
+      console.log(error)
+    } else {
+      messageText = data.toString()
+      console.log(messageText);
+
+      var message = {
+        "text": messageText,
+        "subject": "Request for Info Recieived",
+        "from_email": "david@tradecrafted.com",
+        "from_name": "Code Monkey",
+        "to": [{email: user.email_address}]
+      }
+      sendEmail(message)  
+    }
+  });
+
+ 
  }
 
 function sendEmail(message){
