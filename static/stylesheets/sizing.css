@@ -43,6 +43,18 @@
   margin-bottom: 100px;
 }
 
+.mb150 {
+  margin-bottom: 150px;
+}
+
+.mb200 {
+  margin-bottom: 200px;
+}
+
+.mb350 {
+  margin-bottom: 350px;
+}
+
 .mt5 {
   margin-top: 5px;
 }
@@ -73,6 +85,14 @@
 
 .mt100 {
   margin-top: 100px;
+}
+
+.mt150 {
+  margin-top: 150px;
+}
+
+.mt200 {
+  margin-top: 200px;
 }
 
 .ml5 {

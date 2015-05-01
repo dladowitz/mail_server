@@ -14,6 +14,7 @@
     <link href="/stylesheets/grayscale.css" rel="stylesheet">
     
     <!-- Add On CSS -->
+    <link href="/stylesheets/addons.css" rel="stylesheet">
     <link href="/stylesheets/sizing.css" rel="stylesheet">
     
     <!-- Custom Fonts -->
@@ -29,10 +30,26 @@
 
   <body id="page-top" data-spy="scroll" data-target=".navbar-fixed-top">
     <!-- header partial --> 
-    <!-- <% include header.ejs%> -->
-   
+    <% include header.ejs%>
+    
     <!-- rendered page -->
     <%-body%>
+
+    <!-- footer partial --> 
+    <% include footer.ejs%>  
+    
+
+    <!-- jQuery -->
+    <script src="/javascripts/jquery.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="/javascripts/bootstrap.min.js"></script>
+
+    <!-- Plugin JavaScript -->
+    <script src="/javascripts/jquery.easing.min.js"></script>
+
+    <!-- Custom Theme JavaScript -->
+    <script src="/javascripts/grayscale.js"></script>
   </body>
 
 </html>  
