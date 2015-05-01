@@ -3,21 +3,16 @@ var port        = process.env["PORT"];
 var databaseURL = process.env["DATABASE_URL"];
 var mandrillKey = process.env["MANDRILL_KEY"];
 
-
 //// modules
 var express        = require("express");
 var fs             = require("fs");
 var bodyParser     = require('body-parser');
 var pg             = require('pg'); 
-var ejs            = require('ejs');
 var expressLayouts = require('express-ejs-layouts');
 var mandrill       = require('mandrill-api/mandrill');
 
-
 //// Mandril TODO: move to mailer.js file
 var mandrill_client = new mandrill.Mandrill(mandrillKey);
-
-
 
 console.log("Database - " + databaseURL);
 console.log("Port #   - " + process.env["PORT"])
@@ -39,6 +34,9 @@ app.use(expressLayouts)
 app.use(bodyParser.urlencoded({ extended: true}));
 app.use(bodyParser.json());
 
+// serve up static files
+app.use(express.static(__dirname + '/static'));
+
 // add ejs templeting
 app.set('view engine', 'ejs');
 app.set('layout', 'layout') // defaults to 'layout'  
@@ -53,11 +51,7 @@ app.set('layout', 'layout') // defaults to 'layout'
 //// Routes
 // listen on at the root '/' of the domain
 app.get("/", function(request, response, next) {
-  // response.send("<h1>Hello There World!!!!</h1>");
-  console.log(">>>>>>>>>>>>>>>>>>>")
-  console.log("query string: " + request.query)
-  var name = "david"
-  next()
+  response.render("index");
 });
 
 app.get("/users", function(request, response, next){
@@ -139,10 +133,8 @@ function sendEmail(message){
  }
 
 // look in the view directory. Use index.html as default. 
-app.use(express.static(__dirname + '/views'));
+// app.use(express.static(__dirname + '/views'));
 
-// serve up static files
-app.use(express.static(__dirname + '/static'));
 
 // start listening on the port
 app.listen(port);
