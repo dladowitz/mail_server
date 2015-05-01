@@ -53,22 +53,27 @@ app.get("/", function(request, response, next) {
   response.render("index");
 });
 
-app.get("/users", function(request, response, next){
-  db.query("SELECT * FROM USERS;", [], function(err, result){
-    if (err) {
-      err.explanation = "Not able to do query"
-      response.status(500).send(err)
-    } else {
-      console.log("trying to render users page")
+app.post("/users", function(request, response, next){
+  if(authenticated(request.body["password"])){
+    db.query("SELECT * FROM USERS;", [], function(err, result){
+      if (err) {
+        err.explanation = "Not able to do query"
+        response.status(500).send(err)
+      } else {
+        console.log("trying to render users page")
 
-      // response.send(result.rows);
-      response.render("userlist", {"users" : result.rows});
-    }
-  });
+        // response.send(result.rows);
+        response.render("userlist", {"users" : result.rows});
+      }
+    });  
+  } else {
+    console.log("You are unathorized. All your bases belong to us.")
+    response.redirect("/admin?error=UNAUTHORIZED: All Your Bases Are Belong to Us")
+  }
 });
 
-app.get("/login", function(request, response, next){
-  response.render("login")
+app.get("/admin", function(request, response, next){
+  response.render("admin", {"error": request.query.error});
 });
 
 app.get("/confirmation", function(request, response, next){
@@ -123,6 +128,16 @@ function sendEmail(message){
       // Mandrill returns the error as an object with name and message keys
       console.log('A mandrill error occurred: ' + e.name + ' - ' + e.message);
   });
+ }
+
+ function authenticated(password){
+  if(password === undefined){
+    return false
+  } else if(password.toLowerCase() === "manisha"){
+    return true;
+  } else {
+    return false
+  }
  }
 
 // start listening on the port
