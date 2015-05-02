@@ -1,27 +1,33 @@
 <!DOCTYPE html>  
-<html lang="en">  
+<html lang="no-js">  
   <head>
     <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
     <meta name="viewport" content="width=device-width, initial-scale=1">
     
     <title>Cottage Class</title>
 
     <!-- Bootstrap Core CSS -->
-    <link href="/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/stylesheets/bootstrap.min.css" rel="stylesheet">
 
     <!-- Bootstrap Themes -->
-    <link href="/stylesheets/grayscale.css" rel="stylesheet">
+    <link href="/stylesheets/style.css" rel="stylesheet">
+    <link href="/stylesheets/green.css" rel="stylesheet">
+    <link href="/misc/flexslider/flexslider.css" rel="stylesheet" />
+    <link href="/misc/owl-carousel/owl.carousel.css" rel="stylesheet"/>
+    <link href="/misc/owl-carousel/owl.theme.css" rel="stylesheet"/>
+    <link href="/misc/magnific-popup/magnific-popup.css" rel="stylesheet"/>
     
     <!-- Add On CSS -->
     <link href="/stylesheets/addons.css" rel="stylesheet">
     <link href="/stylesheets/sizing.css" rel="stylesheet">
     
     <!-- Custom Fonts -->
-    <link href="/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-    <link href="http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" rel="stylesheet" type="text/css">
-    <link href="http://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
+    <!-- <link href="/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css"> -->
+    <!-- <link href="http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" rel="stylesheet" type="text/css"> -->
+    <!-- <link href="http://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css"> -->
 
+    <script src="/javascripts/modernizr-2.6.2-respond-1.1.0.min.js"></script>
     <!-- HTML5 shim, for IE6-8 support of HTML elements -->
     <!--[if lt IE 9]>
       <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
@@ -35,21 +41,36 @@
     <!-- rendered page -->
     <%-body%>
 
-    <!-- footer partial --> 
-    <% include footer.ejs%>  
-    
+    <!-- Javascripty things      -->
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <script>window.jQuery || document.write('<script src="inc/js/jquery-1.11.0.min.js"><\/script>')</script>
 
-    <!-- jQuery -->
-    <script src="/javascripts/jquery.js"></script>
-
-    <!-- Bootstrap Core JavaScript -->
     <script src="/javascripts/bootstrap.min.js"></script>
 
-    <!-- Plugin JavaScript -->
-    <script src="/javascripts/jquery.easing.min.js"></script>
+    <script src="/javascripts/main.js"></script>
 
-    <!-- Custom Theme JavaScript -->
-    <script src="/javascripts/grayscale.js"></script>
+    <!-- FLEXSLIDER -->
+    <script src="/misc/flexslider/jquery.flexslider-min.js"></script>
+
+    <!-- Include js plugin -->
+    <script src="/misc/owl-carousel/owl.carousel.js"></script>
+
+    <!-- Magnific Popup core JS file -->
+    <script src="/misc/magnific-popup/jquery.magnific-popup.js"></script> 
+
+    <!-- Isotope JS file -->
+    <script src="/javascripts/isotope/jquery.isotope.min.js"></script>
+
+
+    <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
+    <script>
+        (function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=
+        function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;
+        e=o.createElement(i);r=o.getElementsByTagName(i)[0];
+        e.src='//www.google-analytics.com/analytics.js';
+        r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));
+        ga('create','UA-XXXXX-X');ga('send','pageview');
+    </script> 
   </body>
 
 </html>  

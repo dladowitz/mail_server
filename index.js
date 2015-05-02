@@ -85,15 +85,15 @@ app.post("/submit", function(request, response, next) {
   console.log("Request body: ")
   console.log(body)
 
-  db.query("INSERT INTO users (email_address) VALUES ($1);", [body["email"]], function(err, result) {
+  db.query("INSERT INTO users (email_address) VALUES ($1);", [body["email_address"]], function(err, result) {
     if (err) {
       console.log("Record Not Saved")
       err.explanation = "Something has gone horribily wrong. Wish we knew what it was"
       response.status(500).send(err);
     } else {
       console.log("Record Saved to Database")
-      confirmationEmail({email_address: body["email"]})
-      response.redirect('/confirmation?email='+ body["email"]);
+      confirmationEmail({email_address: body["email_address"]})
+      response.redirect('/confirmation?email='+ body["email_address"]);
     }
   });
 });
