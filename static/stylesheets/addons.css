@@ -1,4 +1,83 @@
-/*add ons*/
-/*#email{
-  color: #42dca3;
-}*/
+/***add on styles***/
+
+
+/*background colors*/
+#why,
+#form {
+  background-color: #33d3b4;
+}
+
+#teachers {
+  background-color: #FCFB70;
+}
+
+#cruz {
+  background-color: #5BCEF5;
+}
+
+/*fonts*/
+section{
+  font-family: 'Raleway', sans-serif;
+}
+
+
+/*margins and paddings*/
+section {
+   padding: 50px 0;
+}
+
+/*.School*/
+.school .title {
+  font-size: 65px;
+  text-align: center;
+  font-weight: 700;
+}
+
+.school .school-info {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.school .school-info span {
+  margin: 0 20px;
+  font-size: 20px;
+}
+
+.school .school-info img {
+  width: 240px;
+}
+
+.school .content-block {
+  background-color: #67B5D3;
+  border-radius: 10px;
+  padding: 40px;
+  margin-bottom: 40px;
+}
+
+.school .content-block .main {
+  text-align: center;
+  font-size: 40px;
+  margin-bottom: 25px;
+}
+
+.school .content-block .quotes {
+  font-size: 20px;
+  font-weight: 100;
+}
+
+.content-block .table {
+  font-size: 25px;
+  font-weight: 100;
+}
+
+
+.content-block p.about {
+  font-size: 20px;
+  font-weight: 100;
+}
+
+
+
+.table.no-border td{
+    border-top: none !important;
+}

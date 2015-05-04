@@ -53,6 +53,10 @@ app.get("/", function(request, response, next) {
   response.render("index");
 });
 
+app.get("/demo", function(request, response, next){
+  response.render("demo");
+})
+
 app.post("/users", function(request, response, next){
   if(authenticated(request.body["password"])){
     db.query("SELECT * FROM USERS;", [], function(err, result){

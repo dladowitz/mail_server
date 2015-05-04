@@ -172,6 +172,23 @@
 .pb0 {
   padding-bottom: 0px;
 }
+
+.pb40 {
+  padding-bottom: 40px;
+}
+
+.pb50 {
+  padding-bottom: 50px;
+}
+
+.pt50 {
+  padding-top: 50px;
+}
+
+.pt40 {
+  padding-top: 40px;
+}
+
 .pl5 {
   padding-left: 5px;
 }

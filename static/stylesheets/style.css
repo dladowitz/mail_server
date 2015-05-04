@@ -52,7 +52,7 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6, .lead {
     margin: 40px auto 0 auto;
     border-radius: 50%;
 }
-#image, #video, #newsletter {
+#video, #newsletter {
     padding-top: 100px;
 }
 .staff img {
