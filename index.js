@@ -43,7 +43,7 @@ app.set('layout', 'layout') // defaults to 'layout'
 
 // logging
 // app.use(function(request, response, next){
-//   console.log("Request at ", request.path);
+//   console.log("Request:", request);
 //   next();
 // })
 
