@@ -1,23 +1,8 @@
 /***add on styles***/
 
-
-/*background colors*/
-#why,
-#form {
-  background-color: #33d3b4;
-}
-
-#teachers {
-  background-color: #FCFB70;
-}
-
-#cruz {
-  background-color: #5BCEF5;
-}
-
-/*fonts*/
-section{
-  font-family: 'Raleway', sans-serif;
+/*Fonts*/
+body {
+  font-family: 'Josefin Slab', serif; 
 }
 
 
@@ -26,11 +11,49 @@ section {
    padding: 50px 0;
 }
 
+/*#Why*/
+#why{
+  background-color: #44DBBE;
+}
+
+#why .title {
+  font-size: 48px;
+  margin-bottom: 20px;
+}
+
+#why .content {
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+/*#Teachers*/
+#teachers {
+  background-color: #FFF578;
+}
+
+#teachers .title {
+  font-size: 36px;
+  margin-bottom: 20px;  
+}
+
+#teachers .content {
+  font-size: 24px;
+}
+
+#cruz {
+  background-color: #78CDF2;
+}
+
+#cruz.school .content-block {
+  background-color: #74B3D0;
+}
+
 /*.School*/
 .school .title {
-  font-size: 65px;
+  font-size: 72px;
   text-align: center;
-  font-weight: 700;
+  font-weight: 400;
+  font-family: 'Arvo', serif;
 }
 
 .school .school-info {
@@ -40,7 +63,7 @@ section {
 
 .school .school-info span {
   margin: 0 20px;
-  font-size: 20px;
+  font-size: 24px;
 }
 
 .school .school-info img {
@@ -48,7 +71,6 @@ section {
 }
 
 .school .content-block {
-  background-color: #67B5D3;
   border-radius: 10px;
   padding: 40px;
   margin-bottom: 40px;
@@ -56,13 +78,12 @@ section {
 
 .school .content-block .main {
   text-align: center;
-  font-size: 40px;
+  font-size: 48px;
   margin-bottom: 25px;
 }
 
 .school .content-block .quotes {
-  font-size: 20px;
-  font-weight: 100;
+  font-size: 24px;
 }
 
 .content-block .table {
