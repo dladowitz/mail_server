@@ -122,8 +122,12 @@ section {
 
 .school .content-block .quotes {
   font-size: 24px;
+  padding: 0 25px;
 }
 
+.school .content-block .quotes.left {
+  border-right: 1px solid
+}
 .school .content-block .quotes p {
   margin-bottom: 20px;
 }
