@@ -1,19 +1,10 @@
-CREATE TABLE emails(
-  id serial primary key not null,
-  name varchar(100) not null,
-  content text not null,
-  created_at timestamptz DEFAULT localtimestamp not null
-);
 
-CREATE TABLE users(
+CREATE TABLE inquiries(
   id serial primary key not null,
-  email_address varchar(100) not null,
-  first_name    varchar(100) DEFAULT 'Guest' not null,
-  created_at timestamptz DEFAULT localtimestamp not null
-);
-
-CREATE TABLE sent_emails(
-  id serial primary key not null,
-  email_id int references emails(id),
-  user_id  int references users(id)
+  name varchar(100), 
+  email varchar(100),
+  phone varchar(100),
+  location varchar(100),
+  ages varchar(100),
+  times varchar(100) 
 );

@@ -199,24 +199,24 @@
 <section id="form" class="container-fluid text-white">
   <div class="title">Interested in Learning More?</div>
   <div class="content col-sm-8 col-sm-offset-2">Fill out this form to recieve a phone consultation.</div>
-  <form action="/consult">
+  <form action="/inquiry" method="POST">
     <div class="info col-sm-4">
-      <input type="text" placeholder="Full Name">
+      <input type="text" name="name" placeholder="Full Name">
     </div>
     <div class="info col-sm-4">
-      <input type="text" placeholder="Email">
+      <input type="email" name="email" placeholder="Email">
     </div>
     <div class="info col-sm-4">
-      <input type="text" placeholder="Phone">
+      <input type="text" name="phone" placeholder="Phone">
     </div>
     <div class="info col-sm-4">
-      <input type="text" placeholder="Where are you located?">
+      <input type="text" name="location" placeholder="Where are you located?">
     </div>
     <div class="info col-sm-4">
-      <input type="text" placeholder="How old are your kids?">
+      <input type="text" name="ages" placeholder="How old are your kids?">
     </div>
     <div class="info col-sm-4">
-      <input type="text" placeholder="Best times to call you?">
+      <input type="text" name="times" placeholder="Best times to call you?">
     </div>
     <div class="submit col-sm-12">
       <input type="submit" value="Get In Touch">  

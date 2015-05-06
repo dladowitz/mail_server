@@ -84,20 +84,20 @@ app.get("/confirmation", function(request, response, next){
   response.render("confirmation", {"email" : request.query.email });
 });
 
-app.post("/submit", function(request, response, next) {
+app.post("/inquiry", function(request, response, next) {
   var body = request.body
   console.log("Request body: ")
   console.log(body)
 
-  db.query("INSERT INTO users (email_address) VALUES ($1);", [body["email_address"]], function(err, result) {
+  db.query("INSERT INTO inquiries (name, email, phone, location, ages, times) VALUES ($1, $2, $3, $4, $5, $6);", [body["name"], body["email"], body["phone"], body["location"], body["ages"], body["times"]], function(err, result) {
     if (err) {
       console.log("Record Not Saved")
       err.explanation = "Something has gone horribily wrong. Wish we knew what it was"
       response.status(500).send(err);
     } else {
       console.log("Record Saved to Database")
-      confirmationEmail({email_address: body["email_address"]})
-      response.redirect('/confirmation?email='+ body["email_address"]);
+      // confirmationEmail({email_address: body["email_address"]})
+      response.redirect('/confirmation?email=' + body["email"]);
     }
   });
 });
