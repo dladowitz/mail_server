@@ -72,7 +72,7 @@ app.post("/users", function(request, response, next){
     });  
   } else {
     console.log("You are unathorized. All your bases belong to us.")
-    response.redirect("/admin?error=UNAUTHORIZED: All Your Bases Are Belong to Us")
+    response.redirect("/admin?error=All Your Bases Are Belong to Us")
   }
 });
 
@@ -137,7 +137,7 @@ function sendEmail(message){
  function authenticated(password){
   if(password === undefined){
     return false
-  } else if(password.toLowerCase() === "manisha"){
+  } else if(password.toLowerCase() === process.env["PASSWORD"]){
     return true;
   } else {
     return false

@@ -11,6 +11,9 @@ section {
    padding: 50px 0;
 }
 
+
+/*** Index page ***/
+
 /*Hero*/
 #hero {
   min-height: 800px;
@@ -30,6 +33,11 @@ section {
   margin-top: 50px;
   font-size: 50px;
   text-align: center;
+}
+
+#hero .admin {
+  background-color: #44DBBE;
+  border-color: #49917B;
 }
 
 /*#Why*/
@@ -190,3 +198,19 @@ section {
 .table.no-border td{
     border-top: none !important;
 }
+
+
+/*** Admin Login Page ***/
+
+#admin {
+  background-color: #44DBBE;
+  min-height: 800px;
+}
+
+#admin .login {
+  margin-top: 200px;
+}
+ #admin .error {
+  color: white;
+  font-size: 18px;
+ }
