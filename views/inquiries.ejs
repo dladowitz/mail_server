@@ -1,0 +1,27 @@
+<div class="container mt100">
+  <h3>Inquiries</h3>
+  
+  <div class="col-sm-12">
+    <table class="table">
+        <tr>
+          <th> Name  </th>
+          <th> Email </th>
+          <th> Phone </th> 
+          <th> Location </th>
+          <th> Ages </th>
+          <th> Times </th>
+        </tr>
+      <% inquiries.forEach(function(inquiry){ %>
+          <tr>
+            <td><%=inquiry.name%></td>
+            <td><%=inquiry.email%></td>
+            <td><%=inquiry.phone%></td>
+            <td><%=inquiry.location%></td>
+            <td><%=inquiry.ages%></td>
+            <td><%=inquiry.times%></td>
+          </tr>
+      <% }) %>
+    </table>
+    
+  </div>
+</div>

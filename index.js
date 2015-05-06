@@ -57,9 +57,9 @@ app.get("/demo", function(request, response, next){
   response.render("demo");
 })
 
-app.post("/users", function(request, response, next){
+app.post("/inquiries", function(request, response, next){
   if(authenticated(request.body["password"])){
-    db.query("SELECT * FROM USERS;", [], function(err, result){
+    db.query("SELECT * FROM inquiries;", [], function(err, result){
       if (err) {
         err.explanation = "Not able to do query"
         response.status(500).send(err)
@@ -67,7 +67,7 @@ app.post("/users", function(request, response, next){
         console.log("trying to render users page")
 
         // response.send(result.rows);
-        response.render("userlist", {"users" : result.rows});
+        response.render("inquiries", {"inquiries" : result.rows});
       }
     });  
   } else {
