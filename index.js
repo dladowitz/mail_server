@@ -96,29 +96,81 @@ app.post("/inquiry", function(request, response, next) {
       response.status(500).send(err);
     } else {
       console.log("Record Saved to Database")
-      // confirmationEmail({email_address: body["email_address"]})
+      confirmationEmail(body["email"])
+      notifyAdminEmail("david@ladowitz.com", body)
       response.redirect('/confirmation?email=' + body["email"]);
     }
   });
 });
 
 //// Functions
-function confirmationEmail(user){
+// DRY this shit up
+function confirmationEmail(recipient){
   var messageText = ""
 
-  fs.readFile(__dirname + "/mail_templates/welcome_email.txt", function(error, data) {
+  fs.readFile(__dirname + "/mail_templates/confirmation_email.html", function(error, data) {
     if(error){
       console.log(error)
     } else {
       messageText = data.toString()
+      console.log("Confirmation Email Sent:")
       console.log(messageText);
 
       var message = {
-        "text": messageText,
-        "subject": "Request for Info Recieived",
-        "from_email": "david@tradecrafted.com",
+        "html": messageText,
+        "subject": "Request for Consult Recieived",
+        "from_email": "manisha@cottageclass.com",
         "from_name": "Cottage Class",
-        "to": [{email: user.email_address}]
+        "to": [{email: recipient}]
+      }
+      sendEmail(message)  
+    }
+  }); 
+ }
+
+function notifyAdminEmail(recipient, requestBody){
+  var messageText = ""
+
+  fs.readFile(__dirname + "/mail_templates/notify_admin_email.html", function(error, data) {
+    if(error){
+      console.log(error)
+    } else {
+      messageText = data.toString()
+      console.log("Notify Admin Email Sent:");
+      console.log(messageText);
+
+      var message = {
+        "html": messageText,
+        "subject": "New Consult Request",
+        "from_email": "no-reply@cottageclass.com",
+        "from_name": "Marvin the Paranoid Android",
+        "to": [{email: recipient}],
+        "global_merge_vars": [
+          {
+              "name": "fullname",
+              "content": requestBody["name"]
+          },
+          {
+              "name": "email",
+              "content": requestBody["email"]
+          },
+          {
+              "name": "phone",
+              "content": requestBody["phone"]
+          },
+          {
+              "name": "location",
+              "content": requestBody["location"]
+          },
+          {
+              "name": "ages",
+              "content": requestBody["ages"]
+          },
+          {
+              "name": "times",
+              "content": requestBody["times"]
+          },
+        ],
       }
       sendEmail(message)  
     }
