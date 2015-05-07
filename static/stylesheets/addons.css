@@ -2,6 +2,7 @@
 
 /*Fonts*/
 body {
+  color: white;
   font-family: 'Josefin Slab', serif; 
 }
 
@@ -58,6 +59,8 @@ section {
 /*#Teachers*/
 #teachers {
   background-color: #FFF578;
+  color: black;
+
 }
 
 #teachers .title {
@@ -214,3 +217,8 @@ section {
   color: white;
   font-size: 18px;
  }
+
+/*** Inquiries Page ***/ 
+.inquiries {
+  color: black;
+}
