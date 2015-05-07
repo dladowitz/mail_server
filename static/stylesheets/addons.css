@@ -2,16 +2,18 @@
 
 /*Fonts*/
 body {
-  color: white;
   font-family: 'Josefin Slab', serif; 
 }
-
 
 /*margins and paddings*/
 section {
    padding: 50px 0;
 }
 
+/*Section Font Colors*/
+#hero, #why, #teachers, .school, #form {
+  color: white;
+}
 
 /*** Index page ***/
 
@@ -217,8 +219,3 @@ section {
   color: white;
   font-size: 18px;
  }
-
-/*** Inquiries Page ***/ 
-.inquiries {
-  color: black;
-}
