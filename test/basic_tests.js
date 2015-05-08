@@ -1,5 +1,5 @@
-var assert = require("assert");
-var C = require("../models/cash.js")
+var assert  = require("assert");
+var C       = require("../models/cash.js")
 
 describe('Array', function(){
   describe('#indexOf', function(){
@@ -8,8 +8,6 @@ describe('Array', function(){
     });
   });
 });
-
-
 
 describe('Cash Register', function(){
   describe('Module C', function(){
