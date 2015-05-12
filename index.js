@@ -7,7 +7,7 @@ var mandrillKey = process.env["MANDRILL_KEY"];
 var express        = require("express");
 var fs             = require("fs");
 var bodyParser     = require('body-parser');
-var pg             = require('pg'); 
+var pg             = require('pg');
 var expressLayouts = require('express-ejs-layouts');
 var mandrill       = require('mandrill-api/mandrill');
 
@@ -39,7 +39,7 @@ app.use(express.static(__dirname + '/static'));
 
 // add ejs templeting
 app.set('view engine', 'ejs');
-app.set('layout', 'layout') // defaults to 'layout'  
+app.set('layout', 'layout') // defaults to 'layout'
 
 // logging
 // app.use(function(request, response, next){
@@ -69,7 +69,7 @@ app.post("/inquiries", function(request, response, next){
         // response.send(result.rows);
         response.render("inquiries", {"inquiries" : result.rows});
       }
-    });  
+    });
   } else {
     console.log("You are unathorized. All your bases belong to us.")
     response.redirect("/admin?error=All Your Bases Are Belong to Us")
@@ -123,9 +123,9 @@ function confirmationEmail(recipient){
         "from_name": "Cottage Class",
         "to": [{email: recipient}]
       }
-      sendEmail(message)  
+      sendEmail(message)
     }
-  }); 
+  });
  }
 
 function notifyAdminEmail(recipient, requestBody){
@@ -172,9 +172,9 @@ function notifyAdminEmail(recipient, requestBody){
           },
         ],
       }
-      sendEmail(message)  
+      sendEmail(message)
     }
-  }); 
+  });
  }
 
 function sendEmail(message){
