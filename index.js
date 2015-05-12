@@ -96,8 +96,8 @@ app.post("/inquiry", function(request, response, next) {
       response.status(500).send(err);
     } else {
       console.log("Record Saved to Database")
-      confirmationEmail(body["email"])
-      notifyAdminEmail("david@ladowitz.com", body)
+      confirmationEmail([{email: body["email"]}])
+      notifyAdminEmail([{email: "david@tradecrafted.com"}, {email: "actfrench@gmail.com"}, {email: "toby@tradecrafted.com"}, {email: "logan@tradecrafted.com"}], body)
       response.redirect('/confirmation?email=' + body["email"]);
     }
   });
@@ -105,7 +105,7 @@ app.post("/inquiry", function(request, response, next) {
 
 //// Functions
 // DRY this shit up
-function confirmationEmail(recipient){
+function confirmationEmail(recipients){
   var messageText = ""
 
   fs.readFile(__dirname + "/mail_templates/confirmation_email.html", function(error, data) {
@@ -121,14 +121,14 @@ function confirmationEmail(recipient){
         "subject": "Request for Consult Recieived",
         "from_email": "manisha@cottageclass.com",
         "from_name": "Cottage Class",
-        "to": [{email: recipient}]
+        "to": recipients
       }
       sendEmail(message)
     }
   });
  }
 
-function notifyAdminEmail(recipient, requestBody){
+function notifyAdminEmail(recipients, requestBody){
   var messageText = ""
 
   fs.readFile(__dirname + "/mail_templates/notify_admin_email.html", function(error, data) {
@@ -144,7 +144,7 @@ function notifyAdminEmail(recipient, requestBody){
         "subject": "New Consult Request",
         "from_email": "no-reply@cottageclass.com",
         "from_name": "Marvin the Paranoid Android",
-        "to": [{email: recipient}],
+        "to": recipients,
         "global_merge_vars": [
           {
               "name": "fullname",
